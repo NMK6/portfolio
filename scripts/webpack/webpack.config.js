@@ -6,6 +6,7 @@ const cleanOptions = {
   verbose: true,
   root: PROJECT_ROOT,
 };
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = () => {
   return {
@@ -36,8 +37,17 @@ module.exports = () => {
         {
           test: /\.scss$/,
           use: [
+            //dev
             'style-loader',
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                },
+              },
+            },
+
             {
               loader: 'postcss-loader',
               options: {
