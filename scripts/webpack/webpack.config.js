@@ -2,10 +2,18 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SOURCE_DIR, BUILD_DIR, PROJECT_ROOT } = require('./constants');
 const env = require('postcss-preset-env');
+const autoprefixer = require('autoprefixer');
 const cleanOptions = {
   verbose: true,
   root: PROJECT_ROOT,
 };
+const ImageminWebpack = require('imagemin-webpack-plugin').default;
+
+const cssnano = require('cssnano');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const imageminSvgo = require('imagemin-svgo');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = () => {
@@ -13,18 +21,12 @@ module.exports = () => {
     entry: [SOURCE_DIR],
     output: {
       path: BUILD_DIR,
-      filename: 'bundle.js',
+      filename: 'js/bundle.js',
     },
     mode: 'development',
+    //change for prod
     devtool: 'eval-cheap-module-source-map',
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: './static/template.html',
-        title: 'Portfolio',
-        favicon: './static/favicon.ico',
-      }),
-      new CleanWebpackPlugin(cleanOptions),
-    ],
+
     module: {
       rules: [
         {
@@ -37,14 +39,24 @@ module.exports = () => {
         {
           test: /\.scss$/,
           use: [
-            //dev
-            'style-loader',
+            //enable for dev
+            // 'style-loader',
+            //enable for prod
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../',
+              },
+            },
+
             {
               loader: 'css-loader',
               options: {
                 modules: {
                   localIdentName: '[path][name]__[local]--[hash:base64:5]',
                 },
+                //change for prod
+                sourceMap: true,
               },
             },
 
@@ -56,7 +68,13 @@ module.exports = () => {
                     env({
                       stage: 0,
                     }),
+                    autoprefixer({}),
+                    cssnano({
+                      preset: 'default',
+                    }),
                   ],
+                  minify: true,
+                  sourceMap: true,
                 },
               },
             },
@@ -102,5 +120,31 @@ module.exports = () => {
         },
       ],
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './static/template.html',
+        title: 'Portfolio',
+        favicon: './static/favicon.ico',
+      }),
+      new CleanWebpackPlugin(cleanOptions),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[id].css',
+        chunkFilename: 'css/[name].[id].css',
+      }),
+      new ImageminWebpack({
+        // imageminOptions: {
+        plugins: [
+          imageminMozjpeg({
+            progressive: true,
+            quality: 60,
+          }),
+          imageminPngquant({
+            quiality: 60,
+          }),
+          imageminSvgo({}),
+        ],
+        // },
+      }),
+    ],
   };
 };
