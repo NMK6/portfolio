@@ -1,25 +1,20 @@
-function createLogo() {
-  const url = 'logo.json';
+export const drawLogo = (arr, obj) => {
+  for (let i = 0; i < arr.length; i++) {
+    obj.y = i + obj.startY;
+    for (let l = 0; l < arr[i].length; l++) {
+      obj.x = l + obj.startX;
+      if (arr[i][l] == 'y') {
+        obj.canvasLogo.context.strokeStyle =
+          obj.colors[Math.floor(Math.random() * obj.colors.length)];
 
-  fetch(url)
-    .then(function (resp) {
-      return resp.json();
-    })
-    .then(function (data) {
-      createCanvasOneLine(
-        data.logo,
-        150,
-        100,
-        'canvas__logo',
-        main,
-        70,
-        70,
-        1.1,
-        1.1,
-        18,
-        24,
-        0.3
-      );
-    })
-    .catch(function () {});
-}
+        obj.draw();
+      } else if (arr[i][l] == 'n') {
+        obj.canvasLogo.context.strokeStyle = 'transparent';
+
+        obj.draw();
+      }
+    }
+  }
+  obj.drawBorder();
+  obj.parent.appendChild(obj.canvasLogo);
+};
