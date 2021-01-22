@@ -52,11 +52,14 @@ module.exports = () => {
             {
               loader: 'css-loader',
               options: {
+                importLoaders: 2,
+                esModule: true,
                 modules: {
-                  localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                  namedExport: true,
+                  localIdentName: '[local]',
                 },
                 //change for prod
-                sourceMap: true,
+                sourceMap: false,
               },
             },
 

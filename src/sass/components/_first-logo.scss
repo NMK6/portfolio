@@ -14,6 +14,19 @@
     margin: 8px;
     position: relative;
   }
+  &__vertical {
+    transition: all 1s ease-in-out;
+  }
+  &__circle {
+    transform: scale(1);
+    animation-name: first-anim;
+
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+    animation-timing-function: ease;
+  }
+
   &__circle {
     display: flex;
     justify-content: center;
@@ -34,6 +47,12 @@
     &::before {
       transform-origin: top;
       transform: rotate(-22deg);
+    }
+  }
+  &__two {
+    &::before {
+      transform-origin: top;
+      transform: rotate(22deg);
     }
   }
   &__three {
@@ -60,9 +79,5 @@
     width: 2px;
     height: 24.5px;
     background-color: $pink-color;
-  }
-  &_two::before {
-    transform-origin: top;
-    transform: rotate(22deg);
   }
 }
