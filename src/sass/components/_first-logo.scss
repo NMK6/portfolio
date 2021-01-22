@@ -10,22 +10,22 @@
   &__vertical {
     width: 2px;
     height: 25px;
-    background-color: $white-color;
+    background-color: $pink-color;
     margin: 8px;
     position: relative;
   }
   &__vertical {
     transition: all 1s ease-in-out;
   }
-  &__circle {
-    transform: scale(1);
-    animation-name: first-anim;
+  //   &__circle {
+  //     transform: scale(1);
+  //     animation-name: first-anim;
 
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
+  //     animation-duration: 2s;
+  //     animation-fill-mode: forwards;
 
-    animation-timing-function: ease;
-  }
+  //     animation-timing-function: ease;
+  //   }
 
   &__circle {
     display: flex;
@@ -41,6 +41,16 @@
       border: 2px solid $pink-color;
       transform: rotate(10deg);
     }
+  }
+  &__one::before,
+  &__two::before,
+  &__three::before,
+  &__three::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 24.5px;
+    background-color: $pink-color;
   }
   &__one {
     margin-left: -8px;
@@ -69,15 +79,5 @@
       top: -9px;
       height: 19px;
     }
-  }
-  &__one::before,
-  &__two::before,
-  &__three::before,
-  &__three::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 24.5px;
-    background-color: $pink-color;
   }
 }
