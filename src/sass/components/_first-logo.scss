@@ -17,15 +17,6 @@
   &__vertical {
     transition: all 1s ease-in-out;
   }
-  //   &__circle {
-  //     transform: scale(1);
-  //     animation-name: first-anim;
-
-  //     animation-duration: 2s;
-  //     animation-fill-mode: forwards;
-
-  //     animation-timing-function: ease;
-  //   }
 
   &__circle {
     display: flex;
@@ -41,6 +32,15 @@
       border: 2px solid $pink-color;
       transform: rotate(10deg);
     }
+  }
+  &__circle-anim {
+    transform: scale(1);
+    animation-name: first-anim;
+
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+    animation-timing-function: ease;
   }
   &__one::before,
   &__two::before,
