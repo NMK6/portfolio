@@ -7,6 +7,7 @@ import * as logoViews from './js/views/logoViews';
 import Logo from './js/models/Logo';
 import Canvas from './js/models/Canvas';
 import * as menuViews from './js/views/menuViews';
+import Menu from './js/models/Menu';
 
 firstScreenViews.addFirstLogo();
 window.addEventListener('DOMContentLoaded', (e) => {
@@ -68,4 +69,36 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     await logoViews.drawLogo(state.logo.result.logo, state.canvas);
   }
+  document.addEventListener('mouseover', async function (e) {
+    e.preventDefault();
+    if (e.target.classList.contains('menu__li')) {
+      state.menuTitles = new Menu();
+      await state.menuTitles.getMenuData();
+      menuViews.createMenuTitle(e, document.querySelector('.second-screen'));
+      state.menuCanvas = new Canvas(
+        500,
+        300,
+        'menu-title-canvas',
+        0,
+        0,
+        10,
+        10,
+        0,
+        0,
+        0.5,
+        document.querySelector(
+          `.${e.target.firstChild.nodeValue}-menu-title-canvas__container`
+        ),
+        0,
+        0
+      );
+      await menuViews.drawMenuTitle(
+        e,
+        state.menuTitles.result,
+        state.menuCanvas
+      );
+      menuViews.showMenuTitle(e);
+      e.target.addEventListener('mouseout', menuViews.removeMenuTitle);
+    }
+  });
 });

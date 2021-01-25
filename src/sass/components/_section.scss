@@ -1,0 +1,30 @@
+.section {
+  &__title {
+    font-size: 6rem;
+    font-weight: 100;
+    text-transform: uppercase;
+
+    font-family: 'wire_oneregular';
+
+    position: relative;
+    color: #73221a;
+
+    &::before {
+      content: '';
+      width: 4rem;
+      height: 2rem;
+
+      border-top: 2px solid#73221A;
+      border-left: 2px solid #73221a;
+      top: -0.5rem;
+      left: -0.7rem;
+      position: absolute;
+      transform: rotate(10deg);
+    }
+  }
+  &__p {
+    font-size: 1.1rem;
+    font-family: 'open_sanslight';
+    font-weight: 100;
+  }
+}
