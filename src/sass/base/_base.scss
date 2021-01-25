@@ -5,8 +5,13 @@ body {
   background-color: $primary-color;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 .root {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  overflow-x: hidden;
+  padding: 2rem;
 }

@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  width: 100vw;
   height: 100vh;
 
   &__title {
@@ -26,4 +25,10 @@
     animation-duration: 5s;
     animation-timing-function: ease-in-out;
   }
+}
+.title_move-right {
+  animation-name: move-right;
+  animation-duration: 1s;
+  animation-timing-function: easy-in;
+  animation-fill-mode: forwards;
 }

@@ -6,42 +6,48 @@ import * as utils from './js/views/utils';
 import * as logoViews from './js/views/logoViews';
 import Logo from './js/models/Logo';
 import Canvas from './js/models/Canvas';
+import * as menuViews from './js/views/menuViews';
 
 firstScreenViews.addFirstLogo();
 window.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault();
   const state = {};
+
   function changeScreens() {
     return new Promise(function (resolve, reject) {
       resolve();
+      reject();
     });
   }
   changeScreens()
-    // .then(function () {
-    //   return firstScreenViews.addFirstLogo();
-    // })
     .then(firstScreenViews.addAnimation)
-
+    .then(utils.addVisuallyHiddenLater('.first-screen'))
     .then(secondScreenViews.addSecondScreen)
-    .then(function () {
-      return utils.addVisuallyHidden('.first-screen');
-    })
+    .then(addLogo)
     .then(function () {
       return utils.removeVisuallyHidden('.second-screen');
     })
     .then(function () {
-      return secondScreenViews.createTitle(
-        document.querySelector('.second-screen')
-      );
+      return setTimeout(function () {
+        secondScreenViews.createTitle(document.querySelector('.second-screen'));
+      }, 2000);
+    })
+    .then(function () {
+      return setTimeout(function () {
+        utils.addClass(
+          document.querySelector('.second-screen__title'),
+          'title_move-right'
+        );
+      }, 6000);
+    })
+    .then(function () {
+      return setTimeout(function () {
+        menuViews.createMenu(document.querySelector('.second-screen'));
+      }, 6100);
     })
     .catch();
-  //   firstScreenViews.addAnimation();
-  //   secondScreenViews.addSecondScreen();
-  //   utils.addVisuallyHidden('.first-screen');
 
-  //   utils.removeVisuallyHidden('.second-screen');
-
-  const addLogo = async () => {
+  async function addLogo() {
     state.logo = new Logo();
     await state.logo.getLogoData();
     state.canvas = new Canvas(
@@ -61,6 +67,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
     );
 
     await logoViews.drawLogo(state.logo.result.logo, state.canvas);
-  };
-  addLogo();
+  }
 });

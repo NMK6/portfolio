@@ -9,6 +9,3 @@ export const addAnimation = () => {
     logoBorder.classList.add('first-screen__circle-anim');
   }, 1000);
 };
-export const removeFirstScreen = () => {
-  const firstScreen = document.querySelector('.first-screen');
-};
