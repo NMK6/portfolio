@@ -1,15 +1,14 @@
-import Menu from '../models/Menu';
-export const createMenu = (parent) => {
+export const createMenu = (parent, titles) => {
   const menuUl = document.createElement('ul');
   const navBar = document.createElement('nav');
 
   navBar.className = 'menu__container';
   parent.appendChild(navBar);
-  const menu = new Menu();
-  // const menuText = ['home', 'projects', 'contact'];
-  const menuText = menu.titles;
+
+  // const menuText = titles;
+
   menuUl.className = 'menu__ul';
-  menuText.forEach((element, key) => {
+  titles.forEach((element, key) => {
     function animateLi() {
       const menuLi = document.createElement('li');
       menuLi.classList = 'menu__li';

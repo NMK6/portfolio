@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault();
   utils.addFonts();
   const state = {};
-
+  getMenu();
   function changeScreens() {
     return new Promise(function (resolve, reject) {
       resolve();
@@ -44,7 +44,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
     })
     .then(function () {
       return setTimeout(function () {
-        menuViews.createMenu(document.querySelector('.second-screen'));
+        menuViews.createMenu(
+          document.querySelector('.second-screen'),
+          state.menuTitles.titles
+        );
       }, 6100);
     })
     .catch();
@@ -70,13 +73,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     await logoViews.drawLogo(state.logo.result.logo, state.canvas);
   }
-  const getMenuHover = async () => {
+  async function getMenu() {
     state.menuTitles = new Menu();
     await state.menuTitles.getMenuData();
-    state.menuData = state.menuTitles.result;
-    return state.menuData;
-  };
-  getMenuHover();
+    // state.menuTitles = state.menuTitles.result;
+    return state.Titles;
+  }
 
   document.addEventListener('mouseover', async function (e) {
     e.preventDefault();
@@ -99,7 +101,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
         0,
         0
       );
-      await menuViews.drawMenuTitle(e, state.menuData, state.menuCanvas);
+      await menuViews.drawMenuTitle(
+        e,
+        state.menuTitles.result,
+        state.menuCanvas
+      );
       menuViews.showMenuTitle(e);
       e.target.addEventListener('mouseout', menuViews.removeMenuTitle);
     }
