@@ -37,7 +37,6 @@ export function removeMenuTitle(e) {
     );
     menuTitleContainer.classList.add('menu-title-canvas__remove');
     setTimeout(function () {
-      console.log('a');
       while (menuTitleContainer.hasChildNodes()) {
         menuTitleContainer.removeChild(menuTitleContainer.firstChild);
       }
