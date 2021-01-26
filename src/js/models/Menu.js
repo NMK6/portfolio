@@ -1,5 +1,7 @@
 export default class Menu {
-  constructor() {}
+  constructor() {
+    this.titles = ['home', 'projects', 'contact'];
+  }
   async getMenuData() {
     try {
       const url = '/json/menu.json';

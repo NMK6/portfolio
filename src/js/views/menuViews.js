@@ -1,10 +1,13 @@
+import Menu from '../models/Menu';
 export const createMenu = (parent) => {
   const menuUl = document.createElement('ul');
   const navBar = document.createElement('nav');
 
   navBar.className = 'menu__container';
   parent.appendChild(navBar);
-  const menuText = ['home', 'projects', 'contact'];
+  const menu = new Menu();
+  // const menuText = ['home', 'projects', 'contact'];
+  const menuText = menu.titles;
   menuUl.className = 'menu__ul';
   menuText.forEach((element, key) => {
     function animateLi() {
@@ -122,12 +125,12 @@ export function showMenuTitle(e) {
 //     section.scrollIntoView();
 //   }
 
-export const drawMenuTitle = async (e, arr, obj) => {
+export const drawMenuTitle = (e, arr, obj) => {
   const title = e.target.firstChild.nodeValue;
   if (!arr) {
     return;
   } else {
-    const dataArr = await arr[`${title}`];
+    const dataArr = arr[`${title}`];
 
     for (let i = 0; i < dataArr.length; i++) {
       obj.y = i + obj.startY;
