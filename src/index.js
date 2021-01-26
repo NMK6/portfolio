@@ -70,12 +70,17 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     await logoViews.drawLogo(state.logo.result.logo, state.canvas);
   }
+  const getMenuHover = async () => {
+    state.menuTitles = new Menu();
+    await state.menuTitles.getMenuData();
+    state.menuData = state.menuTitles.result;
+    return state.menuData;
+  };
+  getMenuHover();
+
   document.addEventListener('mouseover', async function (e) {
     e.preventDefault();
     if (e.target.classList.contains('menu__li')) {
-      state.menuTitles = new Menu();
-      await state.menuTitles.getMenuData();
-      state.menuData = state.menuTitles.result;
       menuViews.createMenuTitle(e, document.querySelector('.second-screen'));
       state.menuCanvas = new Canvas(
         500,
