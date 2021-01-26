@@ -75,6 +75,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     if (e.target.classList.contains('menu__li')) {
       state.menuTitles = new Menu();
       await state.menuTitles.getMenuData();
+      state.menuData = state.menuTitles.result;
       menuViews.createMenuTitle(e, document.querySelector('.second-screen'));
       state.menuCanvas = new Canvas(
         500,
@@ -93,11 +94,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         0,
         0
       );
-      await menuViews.drawMenuTitle(
-        e,
-        state.menuTitles.result,
-        state.menuCanvas
-      );
+      await menuViews.drawMenuTitle(e, state.menuData, state.menuCanvas);
       menuViews.showMenuTitle(e);
       e.target.addEventListener('mouseout', menuViews.removeMenuTitle);
     }
