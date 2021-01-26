@@ -12,6 +12,7 @@ import Menu from './js/models/Menu';
 firstScreenViews.addFirstLogo();
 window.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault();
+  utils.addFonts();
   const state = {};
 
   function changeScreens() {

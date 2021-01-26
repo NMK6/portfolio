@@ -21,3 +21,7 @@ export const removeVisuallyHiddenLater = (oldClass) => {
 export const addClass = (element, newClass) => {
   element.classList.add(newClass);
 };
+export const addFonts = () => {
+  const fonts = `<link rel="preload" href="./fonts/wireone-pj1z-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous"><link rel="preload" href="./fonts/opensanslight-2yxe-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">`;
+  document.head.insertAdjacentHTML('beforeend', fonts);
+};
