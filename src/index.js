@@ -110,4 +110,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
       e.target.addEventListener('mouseout', menuViews.removeMenuTitle);
     }
   });
+  document.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (e.target.classList.contains('menu__li')) {
+      menuViews.showLisContent(e);
+    }
+  });
 });

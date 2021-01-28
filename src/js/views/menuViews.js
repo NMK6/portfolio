@@ -1,3 +1,5 @@
+import { elements } from './base';
+
 export const createMenu = (parent, titles) => {
   const menuUl = document.createElement('ul');
   const navBar = document.createElement('nav');
@@ -52,8 +54,6 @@ export function removeMenuTitle(e) {
   }
 }
 
-// menuUl.addEventListener('click', showLisContent);
-
 export function createMenuTitle(e, parent) {
   const menuTitleContainer = document.createElement('div');
   menuTitleContainer.className = `${e.target.firstChild.nodeValue}-menu-title-canvas__container`;
@@ -66,63 +66,92 @@ export function showMenuTitle(e) {
     )
   ) {
     createMenuTitle(e);
-    // e.target.addEventListener('mouseout', removeMenuTitle);
   }
 }
 
-// function showLisContent(e) {
-//   if (e.target.classList.contains('menu__li')) {
-//     switch (e.target.firstChild.nodeValue) {
-//       case 'home':
-//         if (!document.querySelector('.article__home')) {
-//           const homeArticle = document.createElement('section');
-//           homeArticle.className = 'article__home';
-//           main.appendChild(homeArticle);
-//           showContent(
-//             sectionsContent.home.text,
-//             sectionsContent.home.title,
-//             homeArticle
-//           );
-//         }
+export function showContent(text, title, parent) {
+  const sectionContainer = document.createElement('div');
+  sectionContainer.className = 'section__container';
+  const sectionTitle = document.createElement('h2');
+  sectionTitle.className = 'section__title';
+  sectionTitle.textContent = title;
+  sectionContainer.appendChild(sectionTitle);
 
-//         break;
-//       case 'contact':
-//         if (!document.querySelector('.article__contact')) {
-//           const contactArticle = document.createElement('section');
-//           contactArticle.className = 'article__contact';
-//           main.appendChild(contactArticle);
-//           showContent(
-//             sectionsContent.contact.text,
-//             sectionsContent.contact.title,
-//             contactArticle
-//           );
-// const form = document.createElement("form");
-// contactArticle.appendChild(form);
-// }
+  text.forEach((one) => {
+    const paragraph = document.createElement('p');
+    paragraph.className = 'section__p';
+    paragraph.textContent = one;
+    sectionContainer.appendChild(paragraph);
+  });
 
-//         break;
-//       case 'projects':
-//         if (!document.querySelector('.article__projects')) {
-//           const projectsArticle = document.createElement('section');
-//           projectsArticle.className = 'article__projects';
-//           main.appendChild(projectsArticle);
-//           showContent(
-//             sectionsContent.projects.text,
-//             sectionsContent.projects.title,
-//             projectsArticle
-//           );
-//         }
+  parent.appendChild(sectionContainer);
+}
+const sectionsContent = {
+  home: {
+    title: 'Front end developer',
+    text: ['I am a front end developer.'],
+  },
+  contact: {
+    title: 'Contact me',
+    text: [''],
+  },
+  projects: {
+    title: 'My projects',
+    text: [''],
+  },
+};
+export function showLisContent(e) {
+  switch (e.target.firstChild.nodeValue) {
+    case 'home':
+      if (!document.querySelector('.article__home')) {
+        const homeArticle = document.createElement('section');
+        homeArticle.className = 'article__home';
+        elements.root.appendChild(homeArticle);
+        showContent(
+          sectionsContent.home.text,
+          sectionsContent.home.title,
+          homeArticle
+        );
+      }
 
-//         break;
-//       default:
-//         main.appendChild(homeArticle);
-//     }
-//     const section = document.querySelector(
-//       `.article__${e.target.firstChild.nodeValue}`
-//     );
+      break;
+    case 'contact':
+      if (!document.querySelector('.article__contact')) {
+        const contactArticle = document.createElement('section');
+        contactArticle.className = 'article__contact';
+        elements.root.appendChild(contactArticle);
+        showContent(
+          sectionsContent.contact.text,
+          sectionsContent.contact.title,
+          contactArticle
+        );
+        const form = document.createElement('form');
+        contactArticle.appendChild(form);
+      }
 
-//     section.scrollIntoView();
-//   }
+      break;
+    case 'projects':
+      if (!document.querySelector('.article__projects')) {
+        const projectsArticle = document.createElement('section');
+        projectsArticle.className = 'article__projects';
+        elements.root.appendChild(projectsArticle);
+        showContent(
+          sectionsContent.projects.text,
+          sectionsContent.projects.title,
+          projectsArticle
+        );
+      }
+
+      break;
+    default:
+      elements.root.appendChild(homeArticle);
+  }
+  const section = document.querySelector(
+    `.article__${e.target.firstChild.nodeValue}`
+  );
+
+  section.scrollIntoView();
+}
 
 export const drawMenuTitle = (e, arr, obj) => {
   const title = e.target.firstChild.nodeValue;
