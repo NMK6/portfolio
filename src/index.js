@@ -8,6 +8,7 @@ import Logo from "./js/models/Logo";
 import Canvas from "./js/models/Canvas";
 import * as menuViews from "./js/views/menuViews";
 import Menu from "./js/models/Menu";
+import { page } from "./js/models/page";
 import * as canvasHeaderViews from "./js/views/canvasHeaderViews";
 
 firstScreenViews.addFirstLogo();
@@ -118,7 +119,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
   document.addEventListener("click", function (e) {
     e.preventDefault();
     if (e.target.classList.contains("menu__li")) {
-      menuViews.showLisContent(e);
+      menuViews.showLisContent(e, page);
     }
   });
 });

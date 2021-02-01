@@ -30,6 +30,3 @@ export const createTitle = (parent) => {
   }
   showTitle();
 };
-// export const moveTitle = (title) => {
-//   title.classList.add('title_move-right');
-// };

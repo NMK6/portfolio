@@ -1,22 +1,22 @@
 @font-face {
-  font-family: 'wire_oneregular';
-  src: url('/static/fonts/wireone-pj1z-webfont.woff2') format('woff2');
+  font-family: "wire_oneregular";
+  src: url("/static/fonts/wireone-pj1z-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'open_sanslight';
-  src: url('/static/fonts/opensanslight-2yxe-webfont.woff2') format('woff2');
+  font-family: "open_sanslight";
+  src: url("/static/fonts/opensanslight-2yxe-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 body {
   font-size: 16px;
-  font-family: system-ui, 'open_sanslight';
+  font-family: system-ui, "open_sanslight";
 }
 .second-screen {
   &__letter {
-    font-family: 'wire_oneregular';
+    font-family: "wire_oneregular";
     color: $pink-color;
     text-transform: uppercase;
     font-weight: 100;
@@ -28,6 +28,23 @@ body {
   color: $dark-red-color;
   font-size: 0.9rem;
   text-transform: uppercase;
-  font-family: 'open_sanslight';
+  font-family: "open_sanslight";
   letter-spacing: 1px;
+}
+.section {
+  // &__container {
+  //   font-family: "Courier New", Courier, monospace;
+  // }
+  &__title {
+    font-size: 6rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    color: $dark-red-color;
+    font-family: "wire_oneregular";
+  }
+  &__p {
+    font-size: 1.1rem;
+    font-family: "open_sanslight";
+    font-weight: 100;
+  }
 }

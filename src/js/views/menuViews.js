@@ -86,71 +86,57 @@ export function showContent(text, title, parent) {
 
   parent.appendChild(sectionContainer);
 }
-const sectionsContent = {
-  home: {
-    title: "Front end developer",
-    text: ["I am a front end developer."],
-  },
-  contact: {
-    title: "Contact me",
-    text: [""],
-  },
-  projects: {
-    title: "My projects",
-    text: [""],
-  },
-};
-export function showLisContent(e) {
-  switch (e.target.firstChild.nodeValue) {
-    case "home":
-      if (!document.querySelector(".article__home")) {
-        const homeArticle = document.createElement("section");
-        homeArticle.className = "article__home";
-        elements.root.appendChild(homeArticle);
-        showContent(
-          sectionsContent.home.text,
-          sectionsContent.home.title,
-          homeArticle
-        );
-      }
-
-      break;
-    case "contact":
-      if (!document.querySelector(".article__contact")) {
-        const contactArticle = document.createElement("section");
-        contactArticle.className = "article__contact";
-        elements.root.appendChild(contactArticle);
-        showContent(
-          sectionsContent.contact.text,
-          sectionsContent.contact.title,
-          contactArticle
-        );
-        const form = document.createElement("form");
-        contactArticle.appendChild(form);
-      }
-
-      break;
-    case "projects":
-      if (!document.querySelector(".article__projects")) {
-        const projectsArticle = document.createElement("section");
-        projectsArticle.className = "article__projects";
-        elements.root.appendChild(projectsArticle);
-        showContent(
-          sectionsContent.projects.text,
-          sectionsContent.projects.title,
-          projectsArticle
-        );
-      }
-
-      break;
-    default:
-      elements.root.appendChild(homeArticle);
+//render content
+export function showLisContent(e, obj) {
+  if (!document.querySelector(`.article__${e.target.firstChild.nodeValue}`)) {
+    const articleSection = document.createElement("section");
+    articleSection.className = `article__${e.target.firstChild.nodeValue}`;
+    elements.root.appendChild(articleSection);
+    showContent(
+      obj[`${e.target.firstChild.nodeValue}`].text,
+      obj[`${e.target.firstChild.nodeValue}`].title,
+      articleSection
+    );
   }
-  const section = document.querySelector(
-    `.article__${e.target.firstChild.nodeValue}`
-  );
+  document
+    .querySelector(`.article__${e.target.firstChild.nodeValue}`)
+    .scrollIntoView();
+  // switch (e.target.firstChild.nodeValue) {
+  //   case "home":
+  //     if (!document.querySelector(".article__home")) {
+  //       const homeArticle = document.createElement("section");
+  //       homeArticle.className = "article__home";
+  //       elements.root.appendChild(homeArticle);
+  //       showContent(obj.home.text, obj.home.title, homeArticle);
+  //     }
 
-  section.scrollIntoView();
+  //     break;
+  //   case "contact":
+  //     if (!document.querySelector(".article__contact")) {
+  //       const contactArticle = document.createElement("section");
+  //       contactArticle.className = "article__contact";
+  //       elements.root.appendChild(contactArticle);
+  //       showContent(obj.contact.text, obj.contact.title, contactArticle);
+  //       const form = document.createElement("form");
+  //       contactArticle.appendChild(form);
+  //     }
+
+  //     break;
+  //   case "projects":
+  //     if (!document.querySelector(".article__projects")) {
+  //       const projectsArticle = document.createElement("section");
+  //       projectsArticle.className = "article__projects";
+  //       elements.root.appendChild(projectsArticle);
+  //       showContent(obj.projects.text, obj.projects.title, projectsArticle);
+  //     }
+
+  //     break;
+  // }
+  // const section = document.querySelector(
+  //   `.article__${e.target.firstChild.nodeValue}`
+  // );
+
+  // section.scrollIntoView();
 }
 
 export const drawMenuTitle = (e, arr, obj) => {
