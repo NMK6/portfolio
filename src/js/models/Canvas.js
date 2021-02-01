@@ -24,20 +24,20 @@ export default class Canvas {
     this.startY = startY;
     this.startX = startX;
     this.radius = radius;
-    this.canvasLogo = document.createElement('canvas');
-    this.canvasLogo.context = this.canvasLogo.getContext('2d');
+    this.canvasLogo = document.createElement("canvas");
+    this.canvasLogo.context = this.canvasLogo.getContext("2d");
     this.canvasLogo.width = this.width;
     this.canvasLogo.height = this.height;
     this.canvasLogo.style.width = this.width;
     this.canvasLogo.style.height = this.height;
     this.canvasLogo.className = this.styleClass;
     this.colors = [
-      '#D9B9A7',
-      '#FADDCD',
-      '#FAD5C0',
-      '#FACEB4',
-      '#E6B89E',
-      '#E0C0AD',
+      "#D9B9A7",
+      "#FADDCD",
+      "#FAD5C0",
+      "#FACEB4",
+      "#E6B89E",
+      "#E0C0AD",
     ];
     this.parent = parent;
     this.x = x;
@@ -58,7 +58,7 @@ export default class Canvas {
   }
   drawBorder() {
     this.canvasLogo.context.beginPath();
-    this.canvasLogo.context.strokeStyle = '#d9b9a7';
+    this.canvasLogo.context.strokeStyle = "#d9b9a7";
 
     this.canvasLogo.context.rotate((10 * Math.PI) / 180);
     this.canvasLogo.context.lineWidth = 0.5;

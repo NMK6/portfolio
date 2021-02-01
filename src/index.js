@@ -1,16 +1,17 @@
-import { elements } from './js/views/base';
-import style from './sass/main.scss';
-import * as firstScreenViews from './js/views/firstScreenViews';
-import * as secondScreenViews from './js/views/secondScreenViews';
-import * as utils from './js/views/utils';
-import * as logoViews from './js/views/logoViews';
-import Logo from './js/models/Logo';
-import Canvas from './js/models/Canvas';
-import * as menuViews from './js/views/menuViews';
-import Menu from './js/models/Menu';
+import { elements } from "./js/views/base";
+import "./sass/main.scss";
+import * as firstScreenViews from "./js/views/firstScreenViews";
+import * as secondScreenViews from "./js/views/secondScreenViews";
+import * as utils from "./js/views/utils";
+import * as logoViews from "./js/views/logoViews";
+import Logo from "./js/models/Logo";
+import Canvas from "./js/models/Canvas";
+import * as menuViews from "./js/views/menuViews";
+import Menu from "./js/models/Menu";
+import * as canvasHeaderViews from "./js/views/canvasHeaderViews";
 
 firstScreenViews.addFirstLogo();
-window.addEventListener('DOMContentLoaded', (e) => {
+window.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   utils.addFonts();
   const state = {};
@@ -21,31 +22,35 @@ window.addEventListener('DOMContentLoaded', (e) => {
       reject();
     });
   }
+  //first animation
   changeScreens()
     .then(firstScreenViews.addAnimation)
-    .then(utils.addVisuallyHiddenLater('.first-screen'))
+    .then(utils.addVisuallyHiddenLater(".first-screen"))
     .then(secondScreenViews.addSecondScreen)
     .then(addLogo)
     .then(function () {
-      return utils.removeVisuallyHidden('.second-screen');
+      return canvasHeaderViews.createCanvas();
+    })
+    .then(function () {
+      return utils.removeVisuallyHidden(".second-screen");
     })
     .then(function () {
       return setTimeout(function () {
-        secondScreenViews.createTitle(document.querySelector('.second-screen'));
+        secondScreenViews.createTitle(document.querySelector(".second-screen"));
       }, 2000);
     })
     .then(function () {
       return setTimeout(function () {
         utils.addClass(
-          document.querySelector('.second-screen__title'),
-          'title_move-right'
+          document.querySelector(".second-screen__title"),
+          "title_move-right"
         );
       }, 6000);
     })
     .then(function () {
       return setTimeout(function () {
         menuViews.createMenu(
-          document.querySelector('.second-screen'),
+          document.querySelector(".second-screen"),
           state.menuTitles.titles
         );
       }, 6100);
@@ -58,7 +63,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     state.canvas = new Canvas(
       150,
       100,
-      'canvas__logo',
+      "canvas__logo",
       70,
       70,
       1.1,
@@ -79,15 +84,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // state.menuTitles = state.menuTitles.result;
     return state.Titles;
   }
-
-  document.addEventListener('mouseover', async function (e) {
+  //canvas menu hover
+  document.addEventListener("mouseover", async function (e) {
     e.preventDefault();
-    if (e.target.classList.contains('menu__li')) {
-      menuViews.createMenuTitle(e, document.querySelector('.second-screen'));
+    if (e.target.classList.contains("menu__li")) {
+      menuViews.createMenuTitle(e, document.querySelector(".second-screen"));
       state.menuCanvas = new Canvas(
         500,
         300,
-        'menu-title-canvas',
+        "menu-title-canvas",
         0,
         0,
         10,
@@ -107,12 +112,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
         state.menuCanvas
       );
       menuViews.showMenuTitle(e);
-      e.target.addEventListener('mouseout', menuViews.removeMenuTitle);
+      e.target.addEventListener("mouseout", menuViews.removeMenuTitle);
     }
   });
-  document.addEventListener('click', function (e) {
+  document.addEventListener("click", function (e) {
     e.preventDefault();
-    if (e.target.classList.contains('menu__li')) {
+    if (e.target.classList.contains("menu__li")) {
       menuViews.showLisContent(e);
     }
   });

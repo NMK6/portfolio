@@ -1,13 +1,16 @@
 {
-  "parserOptions": {
-    "parser": "babel-eslint",
-    "ecmaVersion": 8,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  "extends": ["eslint:recommended", "plugin:import/errors", "prettier"],
   "rules": {
-    "semi": "error"
+    "no-console": 1
+  },
+  "plugins": ["import"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
   }
 }

@@ -2,9 +2,11 @@ export default class Logo {
   constructor() {}
   async getLogoData() {
     try {
-      const url = '/json/logo.json';
+      const url = "/json/logo.json";
       const logoData = await fetch(url);
       this.result = await logoData.json();
-    } catch (error) {}
+    } catch (error) {
+      throw new Error("logo");
+    }
   }
 }

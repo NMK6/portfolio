@@ -3,14 +3,14 @@ module.exports = (api) => {
   return {
     presets: [
       [
-        '@babel/env',
+        "@babel/env",
         {
           debug: false,
           spec: true,
           loose: false,
           modules: false,
           targets: {
-            node: 'current',
+            node: "current",
           },
         },
       ],
