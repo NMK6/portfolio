@@ -14,6 +14,9 @@ body {
   font-size: 16px;
   font-family: system-ui, "open_sanslight";
 }
+h2 {
+  line-height: 0.9;
+}
 .second-screen {
   &__letter {
     font-family: "wire_oneregular";
@@ -25,26 +28,24 @@ body {
   }
 }
 .menu__li {
-  color: $dark-red-color;
+  color: $pink-color;
   font-size: 0.9rem;
   text-transform: uppercase;
   font-family: "open_sanslight";
   letter-spacing: 1px;
 }
 .section {
-  // &__container {
-  //   font-family: "Courier New", Courier, monospace;
-  // }
   &__title {
     font-size: 6rem;
     font-weight: 100;
     text-transform: uppercase;
-    color: $dark-red-color;
+    color: $pink-color;
     font-family: "wire_oneregular";
   }
   &__p {
     font-size: 1.1rem;
     font-family: "open_sanslight";
     font-weight: 100;
+    color: $pink-color;
   }
 }
