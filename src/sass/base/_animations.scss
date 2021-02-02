@@ -17,9 +17,11 @@
 @keyframes move-right {
   0% {
     transform: translateX(0);
+    opacity: 1;
   }
   100% {
-    transform: translateX(1000px);
+    transform: translateX(30px);
+    opacity: 0;
   }
 }
 @keyframes move-out-right {

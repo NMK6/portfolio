@@ -67,7 +67,7 @@ export function showMenuTitle(e) {
 
 export const drawMenuTitle = (e, arr, obj) => {
   const title = e.target.firstChild.nodeValue;
-  if (!arr) {
+  if (!arr || obj.parent.contains(obj.canvasLogo)) {
     return;
   } else {
     const dataArr = arr[`${title}`];

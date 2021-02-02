@@ -22,14 +22,14 @@
 
     animation-name: move-down-up;
     animation-duration: 2s;
-    animation-timing-function: easy-in;
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 
     &:hover {
       color: #d9b9a7;
     }
     &::before {
-      content: '';
+      content: "";
       width: 4rem;
       height: 2.2rem;
 

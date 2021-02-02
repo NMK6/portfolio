@@ -7,6 +7,8 @@ export default class Menu {
       const url = "/json/menu.json";
       const menuData = await fetch(url);
       this.result = await menuData.json();
-    } catch (error) {}
+    } catch (error) {
+      throw new Error("menu");
+    }
   }
 }

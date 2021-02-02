@@ -19,8 +19,9 @@
   &__projects,
   &__contact {
     margin: 2rem 0 3rem 0;
-    padding: 3rem 0;
+    padding: 5rem 0;
     position: relative;
+    transition: all 3s ease-in;
   }
   &__home::before,
   &__projects::before,
@@ -36,6 +37,7 @@
     width: 100%;
     height: 100%;
     opacity: 0.2;
+    transition: all 3s ease-in;
   }
 
   &__home::before {
@@ -50,13 +52,14 @@
 }
 .section {
   &__container {
-    padding: 4rem 2.5rem;
+    padding: 4rem 5rem;
 
     display: flex;
     flex-direction: column;
   }
   &__title {
     position: relative;
+    margin: 2.5rem 0;
   }
 
   &__title::before {
@@ -70,5 +73,20 @@
     left: -0.7rem;
     position: absolute;
     transform: rotate(10deg);
+  }
+  &__p {
+    margin: 0;
+    margin-bottom: 0.8rem;
+  }
+
+  &__arrow-container--home,
+  &__arrow-container--projects,
+  &__arrow-container--contact {
+    position: absolute;
+    right: 3rem;
+    bottom: 4rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 3rem;
   }
 }
