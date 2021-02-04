@@ -1,20 +1,19 @@
-// import * as utils from "./utils";
 import { elements } from "./base";
+import * as utils from "./utils";
 
 export function showLisContent(e, obj, calback) {
   function showContent(text, title, parent) {
     const sectionContainer = document.createElement("div");
-    sectionContainer.className = "section__container";
+    utils.addClassAppend("section__container", parent, sectionContainer);
+
     const sectionTitle = document.createElement("h2");
-    sectionTitle.className = "section__title";
     sectionTitle.textContent = title;
-    sectionContainer.appendChild(sectionTitle);
+    utils.addClassAppend("section__title", sectionContainer, sectionTitle);
 
     text.forEach((one) => {
       const paragraph = document.createElement("p");
-      paragraph.className = "section__p";
       paragraph.textContent = one;
-      sectionContainer.appendChild(paragraph);
+      utils.addClassAppend("section__p", sectionContainer, paragraph);
     });
     setTimeout(() => {
       calback(e);
@@ -25,7 +24,7 @@ export function showLisContent(e, obj, calback) {
       9
     )}`;
     sectionContainer.appendChild(arrowContainer);
-    parent.appendChild(sectionContainer);
+
     arrowContainer.addEventListener("click", function (e) {
       e.preventDefault();
       elements.root.scrollIntoView();

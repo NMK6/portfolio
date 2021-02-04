@@ -4,8 +4,16 @@ export const addFirstLogo = () => {
   elements.root.insertAdjacentHTML("beforeend", logo);
 };
 export const addAnimation = () => {
-  const logoBorder = document.querySelector(".first-screen__circle");
   setTimeout(() => {
-    logoBorder.classList.add("first-screen__circle-anim");
+    document
+      .querySelector(".first-screen__circle")
+      .classList.add("first-screen__circle-anim");
   }, 1000);
+};
+export const removeFirstScreen = () => {
+  const firstScreen = document.querySelector(".first-screen");
+  while (firstScreen.firstChild) {
+    firstScreen.removeChild(firstScreen.firstChild);
+  }
+  elements.root.removeChild(firstScreen);
 };

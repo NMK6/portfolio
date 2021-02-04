@@ -16,7 +16,7 @@ import * as drawCanvasViews from "./js/views/drawCanvasViews";
 
 firstScreenViews.addFirstLogo();
 window.addEventListener("DOMContentLoaded", () => {
-  //preload fonts and css
+  //preload fonts
   utils.addFonts();
   const state = {};
 
@@ -29,7 +29,9 @@ window.addEventListener("DOMContentLoaded", () => {
   //first animation
   changeScreens()
     .then(firstScreenViews.addAnimation)
-    .then(utils.addVisuallyHiddenLater(".first-screen"))
+    .then(function () {
+      return utils.delay(firstScreenViews.removeFirstScreen, 3000);
+    })
     .then(secondScreenViews.addSecondScreen)
     .then(addLogo)
     .then(function () {
@@ -146,7 +148,7 @@ window.addEventListener("DOMContentLoaded", () => {
       1,
       1
     );
-    console.log(state.arrow);
+
     drawCanvasViews.drawCanvas(page.arrow, state.arrow);
   };
 });
