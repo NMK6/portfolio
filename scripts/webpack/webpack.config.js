@@ -1,4 +1,5 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackInjector = require("html-webpack-injector");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { SOURCE_DIR, BUILD_DIR, PROJECT_ROOT } = require("./constants");
 const env = require("postcss-preset-env");
@@ -129,6 +130,7 @@ module.exports = () => {
         title: "Portfolio",
         favicon: "./static/favicon.ico",
       }),
+      new HtmlWebpackInjector(),
       new CleanWebpackPlugin(cleanOptions),
       new MiniCssExtractPlugin({
         filename: "css/[name].[id].css",

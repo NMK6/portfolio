@@ -52,24 +52,6 @@ export const drawMenuTitle = (e, arrJ, obj) => {
       utils.removeClass(canvasContainer, "menu-title-canvas__remove");
     }
     const arr = arrJ[`${title}`];
-    //  const dataArrLength = dataArr.length;
-
-    // for (let i = 0; i < dataArrLength; i++) {
-    //   obj.y = i + obj.apartY;
-    //   for (let l = 0; l < dataArr[i].length; l++) {
-    //     obj.x = l + obj.apartX;
-    //     if (dataArr[i][l] == "y") {
-    //       obj.context.strokeStyle =
-    //         obj.colors[Math.floor(Math.random() * obj.colors.length)];
-
-    //       obj.draw();
-    //     } else if (dataArr[i][l] == "n") {
-    //       obj.context.strokeStyle = "transparent";
-
-    //       obj.draw();
-    //     }
-    //   }
-    // }
     utils.drawCanvasFromJson(arr, obj);
     utils.addClass(canvasContainer, "menu-title-canvas__anim");
     if (!document.querySelector(".menu-title-canvas")) {
