@@ -10,15 +10,7 @@ export default class Circle {
     this.canvas.style.width = parent.clientWidth;
     this.canvas.style.height = parent.clientHeight;
     this.canvas.className = className;
-    this.colors = [
-      "#57292c",
-      "#3d1e20",
-      "#57282b",
-      "#3d1a1c",
-      "#421719",
-      "#5a2a2d",
-      "#532528",
-    ];
+    this.colors = ["#fdecec", "   #fcf3f3", "#f8e7e7", "#f5c6c6", "#f1cbcb"];
     this.parent = parent;
     this.x = x;
     this.y = y;

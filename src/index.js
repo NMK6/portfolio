@@ -15,11 +15,11 @@ import * as canvasHeaderViews from "./js/views/canvasHeaderViews";
 import * as drawCanvasViews from "./js/views/drawCanvasViews";
 
 firstScreenViews.addFirstLogo();
-window.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
+window.addEventListener("DOMContentLoaded", () => {
+  //preload fonts and css
   utils.addFonts();
   const state = {};
-  getMenu();
+
   function changeScreens() {
     return new Promise(function (resolve, reject) {
       resolve();
@@ -43,6 +43,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
         secondScreenViews.createTitle(document.querySelector(".second-screen"));
       }, 2000);
     })
+
     .then(function () {
       return setTimeout(function () {
         utils.addClass(
@@ -55,10 +56,12 @@ window.addEventListener("DOMContentLoaded", (e) => {
       return setTimeout(function () {
         menuViews.createMenu(
           document.querySelector(".second-screen"),
-          state.menuTitles.titles
+          state.menuTitles.titles,
+          handleMouseoverMenu
         );
       }, 6100);
     })
+
     .catch();
 
   async function addLogo() {
@@ -85,17 +88,17 @@ window.addEventListener("DOMContentLoaded", (e) => {
   async function getMenu() {
     state.menuTitles = new Menu();
     await state.menuTitles.getMenuData();
-    // state.menuTitles = state.menuTitles.result;
-    return state.Titles;
+
+    return state.menuTitles;
   }
+  getMenu();
   //canvas menu hover
-  document.addEventListener("mouseover", async function (e) {
+  function handleMouseoverMenu(e) {
     e.preventDefault();
-    if (e.target.classList.contains("menu__li")) {
-      menuViews.createMenuTitle(e, document.querySelector(".second-screen"));
+    if (!state.menuCanvas) {
       state.menuCanvas = new Canvas(
-        500,
-        300,
+        470,
+        170,
         "menu-title-canvas",
         0,
         0,
@@ -104,22 +107,25 @@ window.addEventListener("DOMContentLoaded", (e) => {
         0,
         0,
         0.5,
-        document.querySelector(
-          `.${e.target.firstChild.nodeValue}-menu-title-canvas__container`
-        ),
+        document.querySelector(".menu-title-canvas__container"),
         0,
         0
       );
-      await menuViews.drawMenuTitle(
-        e,
-        state.menuTitles.result,
-        state.menuCanvas
-      );
-      menuViews.showMenuTitle(e);
-      e.target.addEventListener("mouseout", menuViews.removeMenuTitle);
     }
-  });
+    if (e.target.classList.contains("menu__li") && elements.width > 600) {
+      showTitlesOnHover(e);
+    } else {
+      return;
+    }
+  }
 
+  const showTitlesOnHover = async (e) => {
+    await menuViews.drawMenuTitle(e, state.menuTitles.result, state.menuCanvas);
+
+    e.target.addEventListener("mouseout", function () {
+      menuViews.removeMenuTitle(state.menuCanvas);
+    });
+  };
   document.addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -140,6 +146,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
       1,
       1
     );
+    console.log(state.arrow);
     drawCanvasViews.drawCanvas(page.arrow, state.arrow);
   };
 });

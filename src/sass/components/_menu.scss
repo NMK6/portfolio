@@ -2,13 +2,13 @@
   &__container {
     position: absolute;
     top: 15rem;
-    left: 2rem;
+    left: 5rem;
     width: 40%;
     height: 60%;
 
     animation-name: move-down;
     animation-duration: 2s;
-    animation-timing-function: easy-in;
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     z-index: 3;
   }
@@ -45,22 +45,21 @@
     }
   }
 }
-.home-menu-title-canvas__container,
-.projects-menu-title-canvas__container,
-.contact-menu-title-canvas__container {
+.menu-title-canvas__container {
   position: absolute;
-  top: 30rem;
-  right: -15rem;
+  top: 28rem;
+  right: 2rem;
 }
 
-.menu-title-canvas {
-  animation-name: move-left;
+.menu-title-canvas__anim {
+  animation-name: appear;
   animation-duration: 1s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 }
+
 .menu-title-canvas__remove {
-  animation-name: move-out-right;
+  animation-name: disappear;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;

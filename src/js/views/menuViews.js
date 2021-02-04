@@ -1,18 +1,15 @@
-export const createMenu = (parent, titles) => {
+import * as utils from "./utils";
+export const createMenu = (parent, titles, ...args) => {
   const menuUl = document.createElement("ul");
   const navBar = document.createElement("nav");
-
-  navBar.className = "menu__container";
-  parent.appendChild(navBar);
-
+  utils.addClassAppend("menu__container", parent, navBar);
+  menuUl.addEventListener("mouseover", ...args);
   menuUl.className = "menu__ul";
   titles.forEach((element, key) => {
     function animateLi() {
       const menuLi = document.createElement("li");
-      menuLi.classList = "menu__li";
-
       menuLi.textContent = element;
-      menuUl.appendChild(menuLi);
+      utils.addClassAppend("menu__li", menuUl, menuLi);
     }
     setTimeout(
       animateLi,
@@ -24,71 +21,59 @@ export const createMenu = (parent, titles) => {
   });
 
   navBar.appendChild(menuUl);
+
+  const menuTitleContainer = document.createElement("div");
+  utils.addClassAppend(
+    "menu-title-canvas__container",
+    parent,
+    menuTitleContainer
+  );
 };
 
-export function removeMenuTitle(e) {
-  if (
-    document.querySelector(
-      `.${e.target.firstChild.nodeValue}-menu-title-canvas__container`
-    )
-  ) {
-    const menuTitleContainer = document.querySelector(
-      `.${e.target.firstChild.nodeValue}-menu-title-canvas__container`
-    );
-    menuTitleContainer.classList.add("menu-title-canvas__remove");
-    setTimeout(function () {
-      while (menuTitleContainer.hasChildNodes()) {
-        menuTitleContainer.removeChild(menuTitleContainer.firstChild);
-      }
-      if (document.querySelector(".menu-title-canvas__remove")) {
-        const oldTitle = document.querySelector(".menu-title-canvas__remove");
-        document.querySelector(".second-screen").removeChild(oldTitle);
-      }
-    }, 3000);
-  } else {
-    return;
-  }
+export function removeMenuTitle(obj) {
+  const canvasContainer = document.querySelector(
+    ".menu-title-canvas__container"
+  );
+  utils.removeClass(canvasContainer, "menu-title-canvas__anim");
+  utils.addClass(canvasContainer, "menu-title-canvas__remove");
+
+  obj.context.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
 }
 
-export function createMenuTitle(e, parent) {
-  const menuTitleContainer = document.createElement("div");
-  menuTitleContainer.className = `${e.target.firstChild.nodeValue}-menu-title-canvas__container`;
-  parent.appendChild(menuTitleContainer);
-}
-export function showMenuTitle(e) {
-  if (
-    !document.querySelector(
-      `.${e.target.firstChild.nodeValue}-menu-title-canvas__container`
-    )
-  ) {
-    createMenuTitle(e);
-  }
-}
-
-export const drawMenuTitle = (e, arr, obj) => {
+export const drawMenuTitle = (e, arrJ, obj) => {
   const title = e.target.firstChild.nodeValue;
-  if (!arr || obj.parent.contains(obj.canvasLogo)) {
+  const canvasContainer = document.querySelector(
+    ".menu-title-canvas__container"
+  );
+  if (!arrJ) {
     return;
   } else {
-    const dataArr = arr[`${title}`];
-
-    for (let i = 0; i < dataArr.length; i++) {
-      obj.y = i + obj.startY;
-      for (let l = 0; l < dataArr[i].length; l++) {
-        obj.x = l + obj.startX;
-        if (dataArr[i][l] == "y") {
-          obj.canvasLogo.context.strokeStyle =
-            obj.colors[Math.floor(Math.random() * obj.colors.length)];
-
-          obj.draw();
-        } else if (dataArr[i][l] == "n") {
-          obj.canvasLogo.context.strokeStyle = "transparent";
-
-          obj.draw();
-        }
-      }
+    if (canvasContainer.classList.contains("menu-title-canvas__remove")) {
+      utils.removeClass(canvasContainer, "menu-title-canvas__remove");
     }
+    const arr = arrJ[`${title}`];
+    //  const dataArrLength = dataArr.length;
 
-    obj.parent.appendChild(obj.canvasLogo);
+    // for (let i = 0; i < dataArrLength; i++) {
+    //   obj.y = i + obj.apartY;
+    //   for (let l = 0; l < dataArr[i].length; l++) {
+    //     obj.x = l + obj.apartX;
+    //     if (dataArr[i][l] == "y") {
+    //       obj.context.strokeStyle =
+    //         obj.colors[Math.floor(Math.random() * obj.colors.length)];
+
+    //       obj.draw();
+    //     } else if (dataArr[i][l] == "n") {
+    //       obj.context.strokeStyle = "transparent";
+
+    //       obj.draw();
+    //     }
+    //   }
+    // }
+    utils.drawCanvasFromJson(arr, obj);
+    utils.addClass(canvasContainer, "menu-title-canvas__anim");
+    if (!document.querySelector(".menu-title-canvas")) {
+      obj.parent.appendChild(obj.canvas);
+    }
   }
 };

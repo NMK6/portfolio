@@ -24,14 +24,7 @@
     opacity: 0;
   }
 }
-@keyframes move-out-right {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(500px);
-  }
-}
+
 @keyframes move-down {
   0% {
     transform: translateY(0);
@@ -63,12 +56,22 @@
     opacity: 0;
   }
 }
-@keyframes move-left {
+//menu hover
+@keyframes appear {
   0% {
-    transform: translate(0);
+    opacity: 0;
   }
 
   100% {
-    transform: translate(-220px);
+    opacity: 1;
+  }
+}
+//menu hover
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

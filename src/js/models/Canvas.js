@@ -7,8 +7,8 @@ export default class Canvas {
     rectW,
     smallRectW,
     smallRectH,
-    startY,
-    startX,
+    apartY,
+    apartX,
     radius,
     parent,
     x,
@@ -21,16 +21,16 @@ export default class Canvas {
     this.rectW = rectW;
     this.smallRectW = smallRectW;
     this.smallRectH = smallRectH;
-    this.startY = startY;
-    this.startX = startX;
+    this.apartY = apartY;
+    this.apartX = apartX;
     this.radius = radius;
-    this.canvasLogo = document.createElement("canvas");
-    this.canvasLogo.context = this.canvasLogo.getContext("2d");
-    this.canvasLogo.width = this.width;
-    this.canvasLogo.height = this.height;
-    this.canvasLogo.style.width = this.width;
-    this.canvasLogo.style.height = this.height;
-    this.canvasLogo.className = this.styleClass;
+    this.canvas = document.createElement("canvas");
+    this.context = this.canvas.getContext("2d");
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+    this.canvas.style.width = this.width;
+    this.canvas.style.height = this.height;
+    this.canvas.className = this.styleClass;
     this.colors = [
       "#D9B9A7",
       "#FADDCD",
@@ -45,25 +45,25 @@ export default class Canvas {
   }
 
   draw() {
-    this.canvasLogo.context.beginPath();
+    this.context.beginPath();
 
-    this.canvasLogo.context.arc(
+    this.context.arc(
       this.x + this.x * this.smallRectW,
       this.y + this.y * this.smallRectH,
       this.radius,
       0,
       2 * Math.PI
     );
-    this.canvasLogo.context.stroke();
+    this.context.stroke();
   }
   drawBorder() {
-    this.canvasLogo.context.beginPath();
-    this.canvasLogo.context.strokeStyle = "#d9b9a7";
+    this.context.beginPath();
+    this.context.strokeStyle = "#d9b9a7";
 
-    this.canvasLogo.context.rotate((10 * Math.PI) / 180);
-    this.canvasLogo.context.lineWidth = 0.5;
-    this.canvasLogo.context.strokeRect(50, 0, this.rectW, this.rectH);
+    this.context.rotate((10 * Math.PI) / 180);
+    this.context.lineWidth = 0.5;
+    this.context.strokeRect(50, 0, this.rectW, this.rectH);
 
-    this.canvasLogo.context.stroke();
+    this.context.stroke();
   }
 }
