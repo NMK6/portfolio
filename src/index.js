@@ -19,7 +19,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //preload fonts
   utils.addFonts();
   const state = {};
-
   function changeScreens() {
     return new Promise(function (resolve, reject) {
       resolve();
@@ -59,6 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
         menuViews.createMenu(
           document.querySelector(".second-screen"),
           state.menuTitles.titles,
+          openSection,
           handleMouseoverMenu
         );
       }, 6100);
@@ -128,19 +128,18 @@ window.addEventListener("DOMContentLoaded", () => {
       menuViews.removeMenuTitle(state.menuCanvas);
     });
   };
-  document.addEventListener("click", function (e) {
+  const openSection = (e) => {
     e.preventDefault();
-
     if (e.target.classList.contains("menu__li")) {
       pageViews.showLisContent(e, page, drawCanvas);
     }
-  });
+  };
 
   const drawCanvas = (e) => {
     state.arrow = new Circle(
       5,
       5,
-      1,
+      0.3,
       document.querySelector(
         `.section__arrow-container--${e.target.firstChild.nodeValue}`
       ),

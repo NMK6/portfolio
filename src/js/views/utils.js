@@ -26,7 +26,7 @@ export const removeClass = (element, oldClass) => {
 };
 
 export const addFonts = () => {
-  const fonts = `<link rel="preload" href="./fonts/wireone-pj1z-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous"><link rel="preload" href="./fonts/opensanslight-2yxe-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">`;
+  const fonts = `<link rel="preload" href="./fonts/wireone-pj1z-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous"><link rel="preload" href="./fonts/opensanslight-2yxe-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous"><link rel="preload" href="/json/logo.json" as="fetch" crossorigin="anonymous"><link rel="preload" href="/json/menu.json" as="fetch" crossorigin="anonymous">`;
   document.head.insertAdjacentHTML("beforeend", fonts);
 };
 export function addClassAppend(newClass, parent, el) {
