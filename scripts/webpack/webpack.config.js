@@ -128,7 +128,6 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: "./static/template.html",
         title: "Portfolio",
-        favicon: "./static/favicon.ico",
       }),
       new HtmlWebpackInjector(),
       new CleanWebpackPlugin(cleanOptions),

@@ -1,5 +1,5 @@
-import { elements } from "./base";
-import * as utils from "./utils";
+import { elements } from "../base";
+import * as utils from "../utils";
 export const createMenu = (parent, titles, calback3, ...args) => {
   const menuUl = document.createElement("ul");
   const navBar = document.createElement("nav");

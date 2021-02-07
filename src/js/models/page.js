@@ -1,6 +1,6 @@
 export const page = {
   home: {
-    title: "Front end developer",
+    title: "home",
     text: [
       "Hi, I'm Marina - front end developer based in Southend-on-sea, UK.",
       "I believe that I could help you to make your projects unique.",
@@ -8,11 +8,11 @@ export const page = {
     ],
   },
   contact: {
-    title: "Contact me",
+    title: "contact",
     text: [""],
   },
   projects: {
-    title: "My projects",
+    title: "projects",
     text: [""],
   },
   arrow: [

@@ -59,7 +59,8 @@
   }
   &__title {
     position: relative;
-    margin: 2.5rem 0;
+    display: inline;
+    z-index: -1;
   }
 
   &__title::before {
@@ -74,6 +75,7 @@
     position: absolute;
     transform: rotate(10deg);
   }
+
   &__p {
     margin: 0;
     margin-bottom: 0.8rem;
@@ -89,4 +91,8 @@
     height: 5rem;
     padding: 3rem;
   }
+}
+a.section__link {
+  padding: 2rem;
+  z-index: 5;
 }

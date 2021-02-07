@@ -1,5 +1,5 @@
-import { elements } from "./base";
-import * as utils from "./utils";
+import { elements } from "../base";
+import * as utils from "../utils";
 export const addSecondScreen = () => {
   const secondScreen = document.createElement("div");
   utils.addClassAppend(
@@ -11,7 +11,7 @@ export const addSecondScreen = () => {
 export const createTitle = (parent) => {
   const title = document.createElement("h1");
   utils.addClassAppend("second-screen__title", parent, title);
-  const titleText = "Frontend developer";
+  const titleText = "Front end developer";
   const titleTextArr = titleText.split("");
   function showTitle() {
     if (titleTextArr.length > 0) {

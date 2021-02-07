@@ -1,4 +1,4 @@
-import { elements } from "./base";
+import { elements } from "../base";
 export function createCanvas() {
   const canvasThirdScreen = document.createElement("canvas");
   const context = canvasThirdScreen.getContext("2d");
