@@ -1,4 +1,4 @@
-import * as utils from "../utils";
+import * as utils from "./utils";
 export const drawLogo = (arr, obj) => {
   utils.drawCanvasFromJson(arr, obj);
   obj.drawBorder();

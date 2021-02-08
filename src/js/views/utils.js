@@ -52,8 +52,11 @@ export function drawCanvasFromJson(arr, obj) {
     }
   }
 }
-export function removeCildren(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
+export const removeChildren = (parent, el) => {
+  if (el) {
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
+    parent.removeChild(el);
   }
-}
+};

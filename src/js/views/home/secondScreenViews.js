@@ -1,12 +1,12 @@
-import { elements } from "../base";
 import * as utils from "../utils";
 export const addSecondScreen = () => {
   const secondScreen = document.createElement("div");
   utils.addClassAppend(
     "second-screen visually-hidden",
-    elements.root,
+    document.querySelector(".root__home"),
     secondScreen
   );
+  return secondScreen;
 };
 export const createTitle = (parent) => {
   const title = document.createElement("h1");

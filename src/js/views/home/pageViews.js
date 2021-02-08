@@ -6,8 +6,8 @@ export function showLisContent(e, obj, calback) {
     const sectionContainer = document.createElement("div");
     utils.addClassAppend("section__container", parent, sectionContainer);
     const sectionLink = document.createElement("a");
-    //REMOVE DIST
-    sectionLink.href = `/dist/${title}/`;
+    //REMOVE DIST for prod
+    sectionLink.href = `/dist/${title}`;
     sectionLink.dataset.link = `${title}`;
     utils.addClassAppend("section__link", sectionContainer, sectionLink);
     const sectionTitle = document.createElement("h2");
@@ -37,7 +37,7 @@ export function showLisContent(e, obj, calback) {
   if (!document.querySelector(`.article__${e.target.firstChild.nodeValue}`)) {
     const articleSection = document.createElement("section");
     articleSection.className = `article__${e.target.firstChild.nodeValue}`;
-    elements.root.appendChild(articleSection);
+    document.querySelector(".root__home").appendChild(articleSection);
     showContent(
       obj[`${e.target.firstChild.nodeValue}`].text,
       obj[`${e.target.firstChild.nodeValue}`].title,

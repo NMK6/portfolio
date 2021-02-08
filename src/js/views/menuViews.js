@@ -1,14 +1,14 @@
-import { elements } from "../base";
-import * as utils from "../utils";
+import { elements } from "./base";
+import * as utils from "./utils";
 export const createMenu = (parent, titles, calback3, ...args) => {
   const menuUl = document.createElement("ul");
   const navBar = document.createElement("nav");
   utils.addClassAppend("menu__container", parent, navBar);
+
+  menuUl.addEventListener("click", calback3);
   if (elements.width > 750) {
     menuUl.addEventListener("mouseover", ...args);
   }
-  menuUl.addEventListener("click", calback3);
-
   menuUl.className = "menu__ul";
   titles.forEach((element, key) => {
     function animateLi() {

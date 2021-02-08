@@ -1,4 +1,3 @@
-import { elements } from "../base";
 export function createCanvas() {
   const canvasThirdScreen = document.createElement("canvas");
   const context = canvasThirdScreen.getContext("2d");
@@ -7,7 +6,7 @@ export function createCanvas() {
   canvasThirdScreen.style.width = innerWidth;
   canvasThirdScreen.style.height = innerHeight;
   canvasThirdScreen.classList = "third-screen__canvas";
-  elements.root.appendChild(canvasThirdScreen);
+  document.querySelector(".root__home").appendChild(canvasThirdScreen);
   class Line {
     constructor(x, y, color, lineHeight) {
       this.x = x;

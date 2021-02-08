@@ -10,14 +10,14 @@ const navigateTo = (url) => {
 const router = async () => {
   const routes = [
     {
-      path: "/dist/",
+      path: "/dist",
       view: renderHome,
     },
     {
-      path: "/dist/projects/",
+      path: "/dist/projects",
       view: renderProjects,
     },
-    { path: "/dist/contact/", view: renderContact },
+    { path: "/dist/contact", view: renderContact },
   ];
   const matchesActive = routes.map((route) => {
     return {
@@ -46,4 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   router();
+
+  addEventListener("keydown", function (e) {
+    if (e.code == 116 || e.code == 82) {
+      e.preventDefault();
+      router();
+    }
+  });
 });
