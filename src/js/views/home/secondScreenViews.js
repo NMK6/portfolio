@@ -28,8 +28,11 @@ export const createTitle = (parent) => {
         showTitle();
       }, 150);
     } else {
-      return;
+      utils.delay(removeTitle, 100);
     }
   }
   showTitle();
+  function removeTitle() {
+    utils.addClass(title, "title_move-right");
+  }
 };

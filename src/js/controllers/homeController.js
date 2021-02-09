@@ -36,7 +36,7 @@ export function renderHome() {
     .then(function () {
       setTimeout(() => {
         firstScreenViews.removeFirstScreen(state.root);
-      }, 2000);
+      }, 3500);
     })
     .then(function () {
       state.secondScreen = secondScreenViews.addSecondScreen();
@@ -48,33 +48,23 @@ export function renderHome() {
       return canvasHeaderViews.createCanvas();
     })
     .then(function () {
-      return utils.removeVisuallyHidden(".second-screen");
+      utils.removeVisuallyHidden(".second-screen");
     })
     .then(function () {
-      return setTimeout(function () {
+      setTimeout(() => {
         secondScreenViews.createTitle(state.secondScreen);
-      }, 1000);
+      }, 4000);
     })
 
     .then(function () {
-      if (state.secondScreen) {
-        return setTimeout(function () {
-          utils.addClass(
-            document.querySelector(".second-screen__title"),
-            "title_move-right"
-          );
-        }, 5500);
-      }
-    })
-    .then(function () {
-      return setTimeout(function () {
+      setTimeout(() => {
         menuViews.createMenu(
           state.secondScreen,
           state.menuTitles.titles,
           openSection,
           handleMouseoverMenu
         );
-      }, 6100);
+      }, 7000);
     })
 
     .catch();
@@ -86,8 +76,7 @@ export function renderHome() {
     return state.menuTitles;
   }
   getMenu();
-  if (state.root) {
-  }
+
   //canvas menu hover
   function handleMouseoverMenu(e) {
     e.preventDefault();

@@ -4,6 +4,7 @@ import { renderContact } from "./js/controllers/contactController";
 import { renderProjects } from "./js/controllers/projectsController";
 const navigateTo = (url) => {
   history.pushState(null, null, url);
+  // clearTimeout(state.timeout);
   router();
 };
 
