@@ -5,19 +5,25 @@ export function showLisContent(e, obj, calback) {
   function showContent(text, title, parent) {
     const sectionContainer = document.createElement("div");
     utils.addClassAppend("section__container", parent, sectionContainer);
-    const sectionLink = document.createElement("a");
-    //REMOVE DIST for prod
-    sectionLink.href = `/dist/${title}`;
-    sectionLink.dataset.link = `${title}`;
-    utils.addClassAppend("section__link", sectionContainer, sectionLink);
     const sectionTitle = document.createElement("h2");
     sectionTitle.textContent = title;
-    utils.addClassAppend("section__title", sectionLink, sectionTitle);
+    if (title != "home") {
+      const sectionLink = document.createElement("a");
+      //REMOVE DIST for prod
+      sectionLink.href = `/dist/${title}`;
+      sectionLink.dataset.link = `${title}`;
+      utils.addClassAppend("section__link", sectionContainer, sectionLink);
+      utils.addClassAppend("section__title", sectionLink, sectionTitle);
+    } else {
+      utils.addClassAppend("section__title", sectionContainer, sectionTitle);
+    }
 
     text.forEach((one) => {
-      const paragraph = document.createElement("p");
-      paragraph.textContent = one;
-      utils.addClassAppend("section__p", sectionContainer, paragraph);
+      if (text[0] !== "") {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = one;
+        utils.addClassAppend("section__p", sectionContainer, paragraph);
+      }
     });
     setTimeout(() => {
       calback(e);
